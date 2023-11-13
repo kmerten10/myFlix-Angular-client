@@ -22,6 +22,12 @@ export class UserRegistrationService {
     );
   }
 
+  public userLogin(userDetails: any): Observable<any> {
+    return this.http.post(apiUrl + 'login?' + new URLSearchParams(userDetails), {}).pipe(
+      catchError(this.handleError)
+    );
+  }
+
   getAllMovies(): Observable<any> {
     const token = localStorage.getItem('token');
     return this.http.get(apiUrl + 'movies', {
@@ -37,7 +43,7 @@ export class UserRegistrationService {
 
   getOneMovie(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/' + title, {
+    return this.http.get(apiUrl + 'movies/' + Title, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
@@ -50,7 +56,7 @@ export class UserRegistrationService {
 
   getDirector(): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.get(apiUrl + 'movies/director/' + directorName {
+    return this.http.get(apiUrl + 'movies/director/' + Name, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
